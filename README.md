@@ -1,78 +1,105 @@
-# Campaign Performance Dashboard
+# Marketing Campaign Performance Dashboard
 
-A marketing analytics dashboard that visualizes campaign performance across platforms, regions, and audience segments using synthetic campaign data.
+A modern campaign analytics project that combines a browser-based executive dashboard and a Python data generator to simulate and visualize digital marketing results.
 
-## Overview
+## What this project does
 
-This project includes a browser-based dashboard built with HTML, CSS, and JavaScript, plus a Python data generator for synthetic campaign performance records. The dashboard presents key metrics such as revenue, ROI, campaign spend, conversions, and audience performance.
+This repository supports a campaign performance showcase by:
 
-## Features
+- generating realistic synthetic marketing campaign records with `scripts/generate_data.py`
+- cleaning and validating campaign data in CSV format
+- displaying campaign KPIs in a web dashboard under `docs/`
+- enabling interactive analysis by platform, region, campaign type, audience, and ROI
 
-- Interactive campaign performance dashboard (`docs/index.html`)
-- Metric tiles for revenue, profit, ROI, and campaign health
-- Platform, region, campaign type, audience segment, and ROI filters
-- Multiple dashboard panels for spend/revenue, regional and audience insights, funnel efficiency, and executive summary
-- Synthetic campaign dataset generation and cleaning script
+## Dataset overview
 
-## Project Structure
+The dataset is synthetic and designed to mirror the structure of real marketing performance data:
+
+- raw campaign file: `data/campaign_data.csv`
+- cleaned dataset: `data/cleaned_campaign_data.csv`
+- dashboard source: `docs/data.json`
+
+Key fields include campaign metadata, impressions, clicks, CTR, leads, conversions, spend, revenue, ROI, CPC, CPM, and customer acquisition cost.
+
+## Data preparation and validation
+
+The data workflow includes:
+
+- generating campaign records with Python and NumPy
+- filling missing numeric values using median imputation
+- replacing missing categorical values with the most common label
+- deduplicating records
+- standardizing date formats, platform labels, and audience segments
+- validating the dataset structure and KPI calculations
+
+## Dashboard capabilities
+
+The dashboard in `docs/index.html` features:
+
+- executive-style KPI cards for revenue, profit, ROI, and campaign health
+- cross-filters for platform, region, campaign type, audience segment, and ROI status
+- charts and matrix views powered by Chart.js
+- a dedicated strategy panel for executive insights
+- a responsive interface for campaign filtering and performance review
+
+## Key benefits
+
+This project is useful for:
+
+- marketing teams reviewing campaign effectiveness
+- agencies preparing client performance summaries
+- growth teams analyzing channel ROI
+- product marketers measuring launch success
+- executives making budget allocation decisions
+
+## Repository structure
 
 - `docs/`
-  - `index.html` — main dashboard page
-  - `style.css` — dashboard styling
-  - `script.js` — dashboard interaction and Chart.js visualizations
-  - `data.json` — sample campaign dataset used by the dashboard
+  - `index.html` — web dashboard UI
+  - `style.css` — dashboard styling and layout
+  - `script.js` — interactive logic, filtering, and Chart.js rendering
+  - `data.json` — processed campaign records for the dashboard
 - `data/`
-  - `campaign_data.csv` — campaign dataset file
-  - `cleaned_campaign_data.csv` — cleaned dataset output
+  - `campaign_data.csv` — raw generated campaign data
+  - `cleaned_campaign_data.csv` — dataset after cleaning and validation
 - `scripts/`
-  - `generate_data.py` — synthetic campaign data generation and cleaning script
-- `requirements.txt` — Python dependencies for data generation
-- `LICENSE` — project license information
+  - `generate_data.py` — generates and cleans campaign data
+- `requirements.txt` — Python library requirements
+- `LICENSE` — project license
 
-## Requirements
+## Setup
 
-- Python 3.x
-- Chrome, Edge, Firefox, or another modern browser for viewing the dashboard
-
-Python dependencies:
-
-- pandas
-- numpy
-- matplotlib
-- seaborn
-- plotly
-- openpyxl
-- scikit-learn
-
-Install dependencies with:
+Install the Python dependencies before running data generation:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+## Running locally
 
-### Run the dashboard
+### Start the dashboard
 
-1. Open `docs/index.html` directly in your browser.
-2. If using local data from `docs/data.json`, the dashboard will load the sample campaign dataset automatically.
-3. Use the filter controls to explore campaigns by platform, region, campaign type, audience, and profitability.
+The dashboard loads `docs/data.json` via browser fetch, so it is best viewed through a local server.
 
-### Generate or refresh campaign data
+```bash
+cd docs
+python -m http.server 8000
+```
 
-Run the data generator script to create or update the campaign dataset:
+Then open:
+
+```text
+http://localhost:8000
+```
+
+### Regenerate data
+
+To recreate the campaign dataset:
 
 ```bash
 python scripts/generate_data.py
 ```
 
-The script builds synthetic campaign records and applies basic cleaning before saving generated output.
-
-## Notes
-
-- The dashboard currently uses Chart.js for visualizations.
-- The sample dataset in `docs/data.json` includes campaign KPIs such as impressions, clicks, CTR, leads, conversions, spend, revenue, ROI, CPC, CPM, and customer acquisition cost.
-
 ## License
 
-This project does not include a license file. Add one if you want to share or publish the dashboard.
+This project is released under the MIT License. See the `LICENSE` file for full terms.

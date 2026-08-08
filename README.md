@@ -27,6 +27,7 @@ This project includes a browser-based dashboard built with HTML, CSS, and JavaSc
 - `scripts/`
   - `generate_data.py` — synthetic campaign data generation and cleaning script
 - `requirements.txt` — Python dependencies for data generation
+- `LICENSE` — project license information
 
 ## Requirements
 
